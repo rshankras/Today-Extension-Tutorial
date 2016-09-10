@@ -3,8 +3,6 @@ title: "creating ios framework!"
 slug: creating-ios-framework
 ---
 
-Make School tutorials should have a consistent flow. This is a short guide to structuring the content of the tutorial.
-
 # Introduction
 
 In this section we will see the steps for creating iOS Framework. And this framework will be used for sharing the reverse geocode functionality between App and App Extension.
