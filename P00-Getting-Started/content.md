@@ -16,3 +16,6 @@ The following topics will be covered as part of the tutorial
 # Download the starter project
 
 You should download [starter project](https://github.com/rshankras/MyAddress-Starter) to get started. The Starter app displays the latitude and longitude of user’s current location. 
+
+![Image Asset](assets/starter1.png "User's Coordinate")
+![Image Asset](assets/starter2.png "Settings Screen")
