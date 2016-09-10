@@ -223,7 +223,14 @@ If you see the following warning message like “Linking against a dylib which i
 
 # Summary
 
-These are steps required for adding Today Extension to Main App.
+We have seen the following as part of this tutorial 
+
+1. Create a new framework in iOS
+2. Steps for sharing data between App and App Extension
+3. Add Today Extension to a Main app.
+
+
+
 
 
 
