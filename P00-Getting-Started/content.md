@@ -9,9 +9,9 @@ in this tutorial we will see steps for creating Todays Extension also known as a
 ![Image Asset](assets/appscreen2.png "Current Address in Today Extension")
 
 The following topics will be covered as part of the tutorial
-1. Creating iOS Framework
-2. Integrating App and Framework
-3. Adding Today Extension
+- Creating iOS Framework
+- Integrating App and Framework
+- Adding Today Extension
 
 # Download the starter project
 
