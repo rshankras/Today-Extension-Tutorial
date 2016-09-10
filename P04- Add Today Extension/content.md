@@ -215,7 +215,7 @@ Finally make sure to add **Privacy - Location When In Use Usage Description** pr
 
 ![Image Asset](assets/appscreen.png "Current Address in Today Extension")
 
-If you see the following warning message like **Linking against a dylib which is not safe for use in application extensions:** then disable the Require Only App Extension-Safe API under Build Settings of Widget Target.
+If you see the following warning message like **Linking against a dylib which is not safe for use in application extensions:** then disable the **Require Only App Extension-Safe API** under Build Settings of Widget Target.
 
 ![Image Asset](assets/requireonlyapi.png "Require Only API")
 
