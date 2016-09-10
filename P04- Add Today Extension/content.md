@@ -5,7 +5,7 @@ slug: add-today-extension
 
 # Introduction
 
-In this section, we will see the steps to add today extension to your project. Then steps for integrating app extension and MSLocationKit framework.
+In this section, we will see the steps to add today extension to your project. Then steps for integrating app extension with MSLocationKit framework.
 
 # Add New Target
 
@@ -31,11 +31,11 @@ Create a new App ID for the bundle identifier matching Widget Target. This is si
 
 ![Image Asset](assets/widgetappid.png "Widget App ID")
 
-Make sure to enable App Groups under App Services.
+Make sure to enable **App Groups** under **App Services**.
 
 ![Image Asset](assets/appservices.png "App Services")
 
-Select the group bundle name and assign to App Group.
+Select the group bundle name and assign it to App Group.
 
 ![Image Asset](assets/appgroupassignment.png "App Group Assignment")
 
@@ -51,7 +51,7 @@ Select the newly created widget provisioning profile for Widget target as shown 
 
 ![Image Asset](assets/assignprovisioningprofileinxcode.png "Assign Widget Provisioning Profile")
 
-Navigate to Capabilities tab under Widget target and enable App Groups. Select app groups “group.makeschool.MyCurrentAddress” as shown in the below screenshot.
+Navigate to **Capabilities** tab under Widget target and enable App Groups. Select app groups **“group.makeschool.MyCurrentAddress”** as shown in the below screenshot.
 
 ![Image Asset](assets/widgetcapabilities.png "Widget Capabilities")
 
@@ -73,18 +73,18 @@ In the attributes inspector, change the style as White. Then mark the check box 
 
 ![Image Asset](assets/activityindictaorviewproperty.png "Activity Indicator View")
 
-Using Assistant editor, create IBOutlets for ActivityIndicatorView and UILabel. Provide name as activityIndicator and addressLabel as shown in the below screenshot.
+Using Assistant editor, create **IBOutlets** for ActivityIndicatorView and UILabel. Provide name as activityIndicator and addressLabel as shown in the below screenshot.
 
 ![Image Asset](assets/activityindicatoriboutlet.png "Activity Indicator IBOutlet")
 ![Image Asset](assets/addresslabeliboutlet.png "Address Label IBOutlet")
 
-Also change the default text for the addressLabel from Hello World to Address. Constraints have been added for addressLabel hence select ActivityIndicatorView, using Align option add “Horizontally in Container” and “Vertically in Container” alignment constraints. This would ensure that the ActivityIndicatorView appears at centre of the view.
+Also change the default text for the addressLabel from Hello World to Address. Constraints have been added for addressLabel hence select ActivityIndicatorView, using Align option add **Horizontally in Container** and **Vertically in Container** alignment constraints. This would ensure that the ActivityIndicatorView appears at centre of the view.
 
 ![Image Asset](assets/addnewalignconstraints.png "Add Align Constraints for Activity Indicator View")
 
 # Integrate Core Location and Framework
 
-Navigate TodayViewController.swift and add the following import statements above the class declaration
+Navigate **TodayViewController.swift** and add the following import statements above the class declaration
 
 ```
 import CoreLocation
@@ -92,7 +92,7 @@ import MSLocationKit
 
 ```
 
-Add setupLocationManager function below the widgetPerformUpdate function. 
+Add **setupLocationManager** function below the widgetPerformUpdate function. 
 
 ```
 
@@ -107,16 +107,16 @@ func setupLocationManager() {
 
 ```
 
-The setupLocationManager function, initializes the locationManager variable and sets the desired location accuracy to best. CLLocationManager delegate related functions will be handled by TodayViewController by setting locationManager?.delegate to self. Finally the requestWhenInUseAuthorization ensures to get the permission from user to access their current location.
+The **setupLocationManager** function, initializes the locationManager variable and sets the desired location accuracy to best. CLLocationManager delegate related functions will be handled by TodayViewController by setting locationManager?.delegate to self. Finally the **requestWhenInUseAuthorization** ensures to get the permission from user to access their current location.
 
-In order fix “Use of unresolved identifier locationManager” error, copy the the below variable declaration after the class declaration.
+In order fix **Use of unresolved identifier locationManager** error, copy the the below variable declaration after the class declaration.
 
 ```
 var locationManager: CLLocationManager?
 
 ```
 
-Xcode would now show an error message that says “cannot assign value of type TodayViewController to type CLLocationManagerDelegate”. This can be fixed by adding the following extension for TodayViewController. This extension should be added after the closing parenthesis of TodayViewController class.
+Xcode would now show an error message that says **cannot assign value of type TodayViewController to type CLLocationManagerDelegate**. This can be fixed by adding the following extension for TodayViewController. This extension should be added after the closing parenthesis of TodayViewController class.
 
 ```
 extension TodayViewController: CLLocationManagerDelegate {
@@ -131,7 +131,7 @@ extension TodayViewController: CLLocationManagerDelegate {
 
 ```
 
-Add the following UserDefaults declaration between locationManager variable and IBOutlets declaration.
+Add the following **UserDefaults** declaration between locationManager variable and IBOutlets declaration.
 
 ```
 
@@ -139,7 +139,7 @@ let defaults = UserDefaults(suiteName: "group.makeschool.MyCurrentAddress")
 
 ```
 
-Now add the following lines code that were already added as part of the main app. These functions can be added after the setupLocationManager function.
+Now add the following lines code that were already added as part of the main app. These functions can be added after the setupLocationManager function.We have to redefine these functions under Widget target as it does not have access to main app module.
 
 ```
 
@@ -162,9 +162,7 @@ func performUIUpdatesOnMain(updates: @escaping () -> Void) {
 
 ```
 
-We have to redefine these functions under Widget target as it does not have access to main app module.
-
-Now replace didUpdateLocations and didFailWithError with the following lines of code. 
+Now replace **didUpdateLocations** and **didFailWithError** with the following lines of code. 
 
 ```
 
@@ -204,7 +202,7 @@ Call setupLocationManager function in viewDidLoad method.
 
 ```
 
-Then navigate to widgetPerformUpdate function and add the following lines of code before completionHandler statement.
+Then navigate to **widgetPerformUpdate** function and add the following lines of code before **completionHandler** statement.
 
 ```
  
@@ -213,11 +211,11 @@ locationManager?.startUpdatingLocation()
 
 ```
 
-Finally make sure to add “Privacy - Location When In Use Usage Description” property in info.plist of widget target with some description. Now you should be able to compile and run the Todays Extension on siimulator or any supported device. This should show the reverse geocoded address as shown below.
+Finally make sure to add **Privacy - Location When In Use Usage Description** property in info.plist of widget target with some description. Now you should be able to compile and run the Todays Extension on siimulator or any supported device. This should show the reverse geocoded address as shown below.
 
 ![Image Asset](assets/appscreen.png "Current Address in Today Extension")
 
-If you see the following warning message like “Linking against a dylib which is not safe for use in application extensions:” then disable the Require Only App Extension-Safe API under Build Settings of Widget Target.
+If you see the following warning message like **Linking against a dylib which is not safe for use in application extensions:** then disable the Require Only App Extension-Safe API under Build Settings of Widget Target.
 
 ![Image Asset](assets/requireonlyapi.png "Require Only API")
 
