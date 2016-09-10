@@ -5,15 +5,14 @@ slug: integrate-app-and-framework
 
 # Introduction
 
-In this section we will see the steps for integrating the **MSLocationKit** framework with the App. MyAddress app has a Settings screen to turn On/Off the display of Time Zone and this preference will be stored in UserDefaults. Then we will see how to share the timezone logic between **AddressViewController.swift** and **SettingsViewController.swift** by adding the functionality to **Common.swift**.
+In this section we will see the steps for integrating the **MSLocationKit** framework with the App. MyAddress app has a Settings screen to turn On/Off the display of Time Zone and this preference will be stored in UserDefaults. 
 
 # Update Common.swift
 
-Navigate to **Common.swift** file add the following lines of code (after import statement)
+The timezone logic will be shared between **AddressViewController.swift** and **SettingsViewController.swift**. So we will add this functionality as part of **Common.swift**. Navigate to **Common.swift** and add the following lines of code (after the import statement)
 
 ```
-let defaults = UserDefaults(suiteName: "group.makeschool.MyCurrentAddress
-")
+let defaults = UserDefaults(suiteName: "group.makeschool.MyCurrentAddress")
 
 func isTimeZone() -> Bool {
     var timeZone = false
@@ -27,7 +26,7 @@ func isTimeZone() -> Bool {
 }
 
 ```
-UserDefaults with suite name as “group.makeschool.MyCurrentAddress” is created which will be used for storing timezone preferences. **isTimeZone** function returns a boolean based on the value stored in UserDefaults(timezone key). When the app is launched for the first time, the preference is not set hence isTimeZone will return true.
+UserDefaults with suite name as “group.makeschool.MyCurrentAddress” is created and this will be used for storing timezone preferences. **isTimeZone** function returns a boolean based on the value stored in UserDefaults. When the app is launched for the first time, the preference is not set hence isTimeZone will return true.
 
 # Update SettingsViewController
 
@@ -38,7 +37,7 @@ defaults?.set(sender.isOn, forKey: "timezone")
 
 ```
 
-Then replace viewDidLoad method of SettingsViewController with the following lines
+Then replace **viewDidLoad** method of **SettingsViewController** with the following lines
 
 ```
 override func viewDidLoad() {
@@ -78,7 +77,7 @@ func locationManager(_ manager: CLLocationManager,
 
 ```
 
-First location is passed as an argument to getAddress method of MSLocationService. Once the location is reverse geocoded, the callback parameter will be populated with the Address information. Based on the value set for Time Zone, the addressBuilder function will return information with or without Time Zone detail.
+First we are passing location as an argument to getAddress method of MSLocationService. Once the location is reverse geocoded, the callback parameter will be populated with the Address information. Based on the value set for Time Zone, the **addressBuilder** function will return information with or without TimeZone detail.
 
 # Summary
 
